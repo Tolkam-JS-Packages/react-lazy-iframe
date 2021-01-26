@@ -58,12 +58,13 @@ class Iframe extends PureComponent<IProps, IState> {
                 src: lazy ? state.src : props.src,
                 className: classNames(className, statusClassName),
             },
-            ['lazy', 'lazyParent', 'lazyOffset', 'withStatusClasses', 'statusClassPrefix', 'onChanges']);
+            ['lazy', 'lazyParent', 'noParentAutodetect', 'lazyOffset', 'withStatusClasses', 'statusClassPrefix', 'onChanges']);
 
         const element = <iframe {...frameProps} onLoad={onFrameChanges} onError={onFrameChanges} />;
 
         return !lazy ? element : <InView
             parent={props.lazyParent}
+            parentAutodetect={!props.noParentAutodetect}
             offset={props.lazyOffset}
             onChanges={that.onLazyChanges}
             noClasses
@@ -121,6 +122,9 @@ export interface IProps extends React.HTMLAttributes<HTMLIFrameElement> {
 
     // parent to track visibility from
     lazyParent?: HTMLElement;
+
+    // disable autodetect of closest scrolling parent
+    noParentAutodetect?: boolean;
 
     // offset before image element becomes visible
     lazyOffset?: IOffset;
