@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { PureComponent, SyntheticEvent } from 'react';
+import { PureComponent, SyntheticEvent, HTMLProps } from 'react';
 import { omit } from '@tolkam/lib-utils';
 import { classNames } from '@tolkam/lib-utils-ui';
 import InView, { IOffset, IVisibility, TStopFn } from '@tolkam/react-in-view';
@@ -114,7 +113,7 @@ class Iframe extends PureComponent<IProps, IState> {
     }
 }
 
-export interface IProps extends React.HTMLAttributes<HTMLIFrameElement> {
+export interface IProps extends HTMLProps<HTMLIFrameElement> {
     src: string,
 
     // lazy load
